@@ -1,4 +1,5 @@
 
+import br.com.illuminati.calculator.IlluminatiCalculator;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;

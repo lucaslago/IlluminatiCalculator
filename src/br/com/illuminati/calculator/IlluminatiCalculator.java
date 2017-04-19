@@ -1,3 +1,5 @@
+package br.com.illuminati.calculator;
+
 public class IlluminatiCalculator {
 
     public int add(String numbers) {
