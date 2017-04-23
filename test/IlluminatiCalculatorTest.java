@@ -36,5 +36,6 @@ public class IlluminatiCalculatorTest {
     public void ifIlluminatiSymbolIsPresentReturnsTheFinalResultMultipliedByIlluminatiOccurrenceNumber(){
         String firstNumber = "1", secondNumber = "2", thirdNumber = "3", illuminatiSymbol = "▲";
         assertThat(illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber + illuminatiSymbol), equalTo(18));
+        assertThat(illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber + illuminatiSymbol + illuminatiSymbol), equalTo(54));
     }
 }
