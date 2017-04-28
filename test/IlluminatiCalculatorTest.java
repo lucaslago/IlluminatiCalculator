@@ -18,6 +18,11 @@ public class IlluminatiCalculatorTest {
     }
 
     @Test
+    public void ifNullStringReturns0(){
+        assertThat(illuminatiCalculator.add(null), equalTo(0));
+    }
+
+    @Test
     public void ifReceivesAStringWithSpacesOnlyReturns0(){
         assertThat(illuminatiCalculator.add("    "), equalTo(0));
     }

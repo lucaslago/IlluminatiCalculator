@@ -1,19 +1,22 @@
 package br.com.illuminati.calculator;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class IlluminatiCalculator {
 
     private final static char ILLUMINATI_CHARACTER = '▲';
     private final static int ILLUMINATI_MULTIPLIER = 3;
 
     public int add(String input) {
-        if(input.isEmpty() || (input.trim()).isEmpty()){//Mesmo resultado se n tiver espaços(?) - deixar só com trim()
+        if(StringUtils.isBlank(input)){
             return 0;
+
         } else {
 
             int illuminatiOccurrences = countIlluminatiOccurrences(input);
-            input = input.replaceAll((String.valueOf(ILLUMINATI_CHARACTER)), "");
+            String inputWithoutIlluminatiSymbol = input.replaceAll((String.valueOf(ILLUMINATI_CHARACTER)), "");
 
-            String numbers[] = input.split(" ");
+            String numbers[] = inputWithoutIlluminatiSymbol.split(" ");
             int result = parseInput(numbers);
 
             if(illuminatiOccurrences > 0){
@@ -32,7 +35,7 @@ public class IlluminatiCalculator {
     }
 
     private boolean isANegativeNumber(int number){
-        return number > 0;
+        return number < 0;
     }
 
     private int countIlluminatiOccurrences(String input){
