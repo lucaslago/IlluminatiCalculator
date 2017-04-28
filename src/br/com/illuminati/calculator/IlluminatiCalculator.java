@@ -20,9 +20,8 @@ public class IlluminatiCalculator {
         } else {
             int illuminatiOccurrences = countIlluminatiOccurrences(input);
 
-            String inputWithoutIlluminatiSymbol = inputTransformer.removeIlluminatiSymbol(input);
+            String numbers[] = inputTransformer.transformInput(input);
 
-            String numbers[] = inputWithoutIlluminatiSymbol.split(" ");
             int result = 0;
 
             try {
