@@ -1,5 +1,6 @@
 
 import br.com.illuminati.calculator.IlluminatiCalculator;
+import br.com.illuminati.calculator.InputTransformer;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -10,7 +11,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class IlluminatiCalculatorTest {
 
-    private IlluminatiCalculator illuminatiCalculator = new IlluminatiCalculator();
+    private InputTransformer inputTransformer = new InputTransformer();
+
+    private IlluminatiCalculator illuminatiCalculator = new IlluminatiCalculator(inputTransformer);
+
     private final static String SPACE = " ";
     private final static char ILLUMINATI_CHARACTER = '▲';
     //Fazer as variaveis de String e int que usamos embaixo(?)

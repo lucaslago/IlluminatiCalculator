@@ -2,13 +2,16 @@ package br.com.illuminati.calculator;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class IlluminatiCalculator {
 
     private final static char ILLUMINATI_CHARACTER = '▲';
     private final static int ILLUMINATI_MULTIPLIER = 3;
+
+    private InputTransformer inputTransformer;
+
+    public IlluminatiCalculator(InputTransformer inputTransformer){
+        this.inputTransformer = inputTransformer;
+    }
 
     public int add(String input) {
         if(StringUtils.isBlank(input)){
@@ -16,7 +19,8 @@ public class IlluminatiCalculator {
 
         } else {
             int illuminatiOccurrences = countIlluminatiOccurrences(input);
-            String inputWithoutIlluminatiSymbol = input.replaceAll((String.valueOf(ILLUMINATI_CHARACTER)), "");
+
+            String inputWithoutIlluminatiSymbol = inputTransformer.removeIlluminatiSymbol(input);
 
             String numbers[] = inputWithoutIlluminatiSymbol.split(" ");
             int result = 0;
