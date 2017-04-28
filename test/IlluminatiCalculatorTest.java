@@ -55,7 +55,7 @@ public class IlluminatiCalculatorTest {
         int firstResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber + ILLUMINATI_CHARACTER);
         assertThat(firstResult, equalTo(18));
         int secondResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber + ILLUMINATI_CHARACTER + ILLUMINATI_CHARACTER);
-        assertThat(secondResult, equalTo(54));
+        assertThat(secondResult, equalTo(36));
     }
 
     @Test
@@ -70,4 +70,12 @@ public class IlluminatiCalculatorTest {
         assertThat(outContent.toString(), equalTo(expectedOutput));
 
     }
+
+    @Test
+    public void ifNumberGreaterThanIlluminatiCreationYearIsPresentIgnoreIt(){
+        String firstNumber = "1", secondNumber = "2", thirdNumber = "1777";
+        int secondResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber);
+        assertThat(secondResult, equalTo(3));
+    }
+
 }

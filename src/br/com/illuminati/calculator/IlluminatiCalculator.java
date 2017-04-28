@@ -6,6 +6,7 @@ public class IlluminatiCalculator {
 
     private final static char ILLUMINATI_CHARACTER = '▲';
     private final static int ILLUMINATI_MULTIPLIER = 3;
+    private final static int ILLUMINATI_CREATION_YEAR = 1776;
 
     private InputTransformer inputTransformer;
 
@@ -25,32 +26,36 @@ public class IlluminatiCalculator {
             int result = 0;
 
             try {
-                result = parseInput(numbers);
+                result = calculateResult(numbers, illuminatiOccurrences);
 
             } catch (NegativeNumberException e){
                 System.out.println(e.getMessage());
-            }
 
-            if(illuminatiOccurrences > 0){
-                result = multiplyTotalResultByIlluminatiOccurrenceNumber(illuminatiOccurrences, result);
             }
 
             return result;
         }
     }
 
-    private int parseInput(String[] numbers) throws NegativeNumberException {
+    private int calculateResult(String[] numbers, int illuminatiOccurrences) throws NegativeNumberException {
         int result = 0;
 
         for (String number: numbers){
             int parsedNumber = Integer.parseInt(number);
 
-            if(isANegativeNumber(parsedNumber)){
+            if(isANegativeNumber(parsedNumber)) {
                 throw new NegativeNumberException(writeNegativeNumberErrorMessage(numbers));
             }
 
-            result += parsedNumber;
+            if(!isGreaterThanIlluminatiCreationYear(parsedNumber)){
+                result += parsedNumber;
+            }
         }
+
+        if(illuminatiOccurrences > 0){
+            result = multiplyTotalResultByIlluminatiOccurrenceNumber(illuminatiOccurrences, result);
+        }
+
         return result;
     }
 
@@ -71,6 +76,11 @@ public class IlluminatiCalculator {
         return number < 0;
     }
 
+    private boolean isGreaterThanIlluminatiCreationYear(int number){
+        return number > ILLUMINATI_CREATION_YEAR;
+    }
+
+
     private int countIlluminatiOccurrences(String input){
         int illuminatiOccurrences = 0;
 
@@ -83,10 +93,7 @@ public class IlluminatiCalculator {
     }
 
     private int multiplyTotalResultByIlluminatiOccurrenceNumber(int illuminatiOccurrences, int totalResult){
-        for(int cont = 0; cont < illuminatiOccurrences; cont++){
-            totalResult = totalResult * ILLUMINATI_MULTIPLIER;
-        }
-        return totalResult;
+        return totalResult * (illuminatiOccurrences * ILLUMINATI_MULTIPLIER);
     }
 
 

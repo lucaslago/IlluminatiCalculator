@@ -1,8 +1,5 @@
 package br.com.illuminati.calculator;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 public class InputTransformer {
 
     private final static char ILLUMINATI_CHARACTER = '▲';
