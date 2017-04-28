@@ -2,6 +2,9 @@
 import br.com.illuminati.calculator.IlluminatiCalculator;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -53,8 +56,14 @@ public class IlluminatiCalculatorTest {
 
     @Test
     public void ifNegativeNumberIsPresentShowsAMessageAndTheNegativeNumbers(){
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
         String firstNumber = "1", secondNumber = "-2";
-        int result = illuminatiCalculator.add(firstNumber + SPACE + secondNumber);
-        assertThat(result, equalTo(-1));
+        illuminatiCalculator.add(firstNumber + SPACE + secondNumber);
+        String expectedOutput  = "Números negativos não são illuminatis: -2\n";
+
+        assertThat(outContent.toString(), equalTo(expectedOutput));
+
     }
 }
