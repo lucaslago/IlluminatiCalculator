@@ -9,9 +9,11 @@ public class IlluminatiCalculator {
     private final static int ILLUMINATI_CREATION_YEAR = 1776;
 
     private InputTransformer inputTransformer;
+    private IlluminatiUtils illuminatiUtils;
 
-    public IlluminatiCalculator(InputTransformer inputTransformer){
+    public IlluminatiCalculator(InputTransformer inputTransformer, IlluminatiUtils illuminatiUtils){
         this.inputTransformer = inputTransformer;
+        this.illuminatiUtils = illuminatiUtils;
     }
 
     public int add(String input) {
@@ -20,8 +22,8 @@ public class IlluminatiCalculator {
 
         } else {
             int illuminatiOccurrences = countIlluminatiOccurrences(input);
-
             String numbers[] = inputTransformer.transformInput(input);
+            //Fazer um objeto que contenha esses dois parâmetros como atributos?
 
             int result = 0;
 
@@ -44,13 +46,15 @@ public class IlluminatiCalculator {
             int parsedNumber = Integer.parseInt(number);
 
             if(isANegativeNumber(parsedNumber)) {
-                throw new NegativeNumberException(writeNegativeNumberErrorMessage(numbers));
+                String errorMessage = illuminatiUtils.writeNegativeNumberErrorMessage(numbers);
+                throw new NegativeNumberException(errorMessage);
             }
 
             if(!isGreaterThanIlluminatiCreationYear(parsedNumber)){
                 result += parsedNumber;
             }
         }
+        //Tem um for aqui e um no countIlluminatiOccurrences, como eliminar isso?
 
         if(illuminatiOccurrences > 0){
             result = multiplyTotalResultByIlluminatiOccurrenceNumber(illuminatiOccurrences, result);
@@ -58,19 +62,6 @@ public class IlluminatiCalculator {
 
         return result;
     }
-
-    private String writeNegativeNumberErrorMessage(String[] numbers){
-        String errorMessage = "Números negativos não são illuminatis: ";
-
-        for(String number: numbers){
-            if(number.contains("-")){
-                errorMessage += number;
-            }
-        }
-
-        return errorMessage;
-    }
-
 
     private boolean isANegativeNumber(int number){
         return number < 0;

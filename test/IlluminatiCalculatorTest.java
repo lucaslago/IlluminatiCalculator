@@ -1,5 +1,6 @@
 
 import br.com.illuminati.calculator.IlluminatiCalculator;
+import br.com.illuminati.calculator.IlluminatiUtils;
 import br.com.illuminati.calculator.InputTransformer;
 import org.junit.Test;
 
@@ -12,8 +13,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class IlluminatiCalculatorTest {
 
     private InputTransformer inputTransformer = new InputTransformer();
+    private IlluminatiUtils illuminatiUtils = new IlluminatiUtils();
 
-    private IlluminatiCalculator illuminatiCalculator = new IlluminatiCalculator(inputTransformer);
+    private IlluminatiCalculator illuminatiCalculator = new IlluminatiCalculator(inputTransformer, illuminatiUtils);
 
     private final static String SPACE = " ";
     private final static char ILLUMINATI_CHARACTER = '▲';
