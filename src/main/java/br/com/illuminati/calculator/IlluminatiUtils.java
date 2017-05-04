@@ -1,16 +1,11 @@
 package br.com.illuminati.calculator;
 
+import java.util.List;
+
 public class IlluminatiUtils {
 
-    public String writeNegativeNumberErrorMessage(String[] numbers){
-        String errorMessage = "Números negativos não são illuminatis: ";
-
-        for(String number: numbers){
-            if(number.contains("-")){
-                errorMessage += number;
-            }
-        }
-
+    public String writeNegativeNumberErrorMessage(List<String> negativeNumbers){
+        String errorMessage = "Números negativos não são illuminatis: " + String.join(",", negativeNumbers);
         return errorMessage;
     }
 

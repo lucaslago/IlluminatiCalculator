@@ -1,6 +1,8 @@
 package br.com.illuminati.calculator;
 
 import org.apache.commons.lang3.StringUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IlluminatiCalculator {
 
@@ -23,7 +25,6 @@ public class IlluminatiCalculator {
         } else {
             int illuminatiOccurrences = countIlluminatiOccurrences(input);
             String numbers[] = inputTransformer.transformInput(input);
-            //Fazer um objeto que contenha esses dois parâmetros como atributos?
 
             int result = 0;
 
@@ -41,20 +42,24 @@ public class IlluminatiCalculator {
 
     private int calculateResult(String[] numbers, int illuminatiOccurrences) throws NegativeNumberException {
         int result = 0;
+        List<String> negativeNumbers = new ArrayList<String>();
 
         for (String number: numbers){
             int parsedNumber = Integer.parseInt(number);
 
             if(isANegativeNumber(parsedNumber)) {
-                String errorMessage = illuminatiUtils.writeNegativeNumberErrorMessage(numbers);
-                throw new NegativeNumberException(errorMessage);
+                negativeNumbers.add(String.valueOf(parsedNumber));
             }
 
             if(!isGreaterThanIlluminatiCreationYear(parsedNumber)){
                 result += parsedNumber;
             }
         }
-        //Tem um for aqui e um no countIlluminatiOccurrences, como eliminar isso?
+
+        if (negativeNumbers.size() > 0){
+            String errorMessage = illuminatiUtils.writeNegativeNumberErrorMessage(negativeNumbers);
+            throw new NegativeNumberException(errorMessage);
+        }
 
         if(illuminatiOccurrences > 0){
             result = multiplyTotalResultByIlluminatiOccurrenceNumber(illuminatiOccurrences, result);

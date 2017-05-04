@@ -3,7 +3,6 @@ import br.com.illuminati.calculator.IlluminatiCalculator;
 import br.com.illuminati.calculator.IlluminatiUtils;
 import br.com.illuminati.calculator.InputTransformer;
 import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
