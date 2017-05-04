@@ -18,7 +18,11 @@ public class IlluminatiCalculatorTest {
 
     private final static String SPACE = " ";
     private final static char ILLUMINATI_CHARACTER = '▲';
+
     //Fazer as variaveis de String e int que usamos embaixo(?)
+    private String firstNumber = "1", secondNumber = "2", thirdNumber = "100";
+    private String positiveNumber = "10", negativeNumber = "-1";
+    private int result;
 
     @Test
     public void ifReceivesAnEmptyStringReturns0(){
@@ -42,21 +46,15 @@ public class IlluminatiCalculatorTest {
 
     @Test
     public void ifNumbersSeparatedBySpaceAreGivenItReturnsTheCorrectSum() {
-        String firstNumber = "1", secondNumber = "2", thirdNumber = "100";
-        int firstResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber);
-        assertThat(firstResult, equalTo(3));
-
-        int secondResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber);
-        assertThat(secondResult, equalTo(103));
+        result = illuminatiCalculator.add(positiveNumber + SPACE + negativeNumber);
+        assertThat(result, equalTo(9));
     }
 
     @Test
     public void ifIlluminatiSymbolIsPresentReturnsTheFinalResultMultipliedByIlluminatiOccurrenceNumber(){
-        String firstNumber = "1", secondNumber = "2", thirdNumber = "3";
-        int firstResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber + ILLUMINATI_CHARACTER);
-        assertThat(firstResult, equalTo(18));
-        int secondResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber + ILLUMINATI_CHARACTER + ILLUMINATI_CHARACTER);
-        assertThat(secondResult, equalTo(36));
+        thirdNumber = "3";
+        result = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber + ILLUMINATI_CHARACTER + ILLUMINATI_CHARACTER);
+        assertThat(result, equalTo(36));
     }
 
     @Test
@@ -64,7 +62,7 @@ public class IlluminatiCalculatorTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        String firstNumber = "1", secondNumber = "-2";
+        secondNumber = "-2";
         illuminatiCalculator.add(firstNumber + SPACE + secondNumber);
         String expectedOutput  = "Números negativos não são illuminatis: -2\n";
 
@@ -74,9 +72,9 @@ public class IlluminatiCalculatorTest {
 
     @Test
     public void ifNumberGreaterThanIlluminatiCreationYearIsPresentIgnoreIt(){
-        String firstNumber = "1", secondNumber = "2", thirdNumber = "1777";
-        int secondResult = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber);
-        assertThat(secondResult, equalTo(3));
+        thirdNumber = "1777";
+        result = illuminatiCalculator.add(firstNumber + SPACE + secondNumber + SPACE + thirdNumber);
+        assertThat(result, equalTo(3));
     }
 
 }

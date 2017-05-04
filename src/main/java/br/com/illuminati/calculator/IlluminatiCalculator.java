@@ -33,7 +33,6 @@ public class IlluminatiCalculator {
 
             } catch (NegativeNumberException e){
                 System.out.println(e.getMessage());
-
             }
 
             return result;
