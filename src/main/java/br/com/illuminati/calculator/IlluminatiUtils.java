@@ -1,4 +1,4 @@
-package br.com.illuminati.calculator;
+package main.java.br.com.illuminati.calculator;
 
 import java.util.List;
 

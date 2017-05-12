@@ -1,5 +1,4 @@
-package br.com.illuminati.calculator;
-
+package main.java.br.com.illuminati.calculator;
 
 public class NegativeNumberException extends Exception {
 

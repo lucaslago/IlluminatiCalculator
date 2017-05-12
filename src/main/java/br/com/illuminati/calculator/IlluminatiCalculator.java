@@ -1,4 +1,4 @@
-package br.com.illuminati.calculator;
+package main.java.br.com.illuminati.calculator;
 
 import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ public class IlluminatiCalculator {
 
             } catch (NegativeNumberException e){
                 System.out.println(e.getMessage());
+
             }
 
             return result;

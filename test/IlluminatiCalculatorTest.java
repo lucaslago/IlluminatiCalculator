@@ -1,10 +1,10 @@
-
-import br.com.illuminati.calculator.IlluminatiCalculator;
-import br.com.illuminati.calculator.IlluminatiUtils;
-import br.com.illuminati.calculator.InputTransformer;
+import main.java.br.com.illuminati.calculator.IlluminatiCalculator;
+import main.java.br.com.illuminati.calculator.IlluminatiUtils;
+import main.java.br.com.illuminati.calculator.InputTransformer;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -48,6 +48,13 @@ public class IlluminatiCalculatorTest {
     public void ifNumbersSeparatedBySpaceAreGivenItReturnsTheCorrectSum() {
         result = illuminatiCalculator.add(positiveNumber + SPACE + negativeNumber);
         assertThat(result, equalTo(9));
+    }
+
+    //Exemplo de como testar se deu throw na exception
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void testIndexOutOfBoundsException() {
+        ArrayList emptyList = new ArrayList();
+        Object o = emptyList.get(0);
     }
 
     @Test
